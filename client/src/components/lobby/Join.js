@@ -16,9 +16,11 @@ const Join = () => {
   }, []);
 
   const joinGame = id => {
-    Axios.post("/api/players", { name, id }).then(res =>
-      navigate("/room/" + id)
-    );
+    Axios.post("/api/players", { name, id }).then(res => {
+      localStorage.setItem("playerId", res.data.playerId);
+      localStorage.setItem("roomId", res.data.roomId);
+      navigate("/room/" + id);
+    });
   };
 
   return (

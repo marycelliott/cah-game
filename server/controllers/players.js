@@ -20,10 +20,11 @@ module.exports = {
               .save()
               .then(room => {
                 console.log(room);
-                res
-                  .cookie("player", player._id, { httpOnly: true })
-                  .cookie("room", room._id, { httpOnly: true })
-                  .json(room);
+                res.json({
+                  room: room,
+                  playerId: player._id,
+                  roomId: room._id
+                });
               })
               .catch(err => {
                 console.log(err);

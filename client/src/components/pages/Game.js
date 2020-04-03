@@ -12,7 +12,7 @@ const Game = props => {
   useEffect(() => {
     axios.get("/api/rooms/" + props.name).then(res => {
       console.log(res);
-      setRoom(res.data);
+      setRoom(res.data.room);
     });
   }, []);
 

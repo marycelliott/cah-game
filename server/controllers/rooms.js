@@ -31,10 +31,7 @@ module.exports = {
     newRoom
       .save()
       .then(room => {
-        res
-          .cookie("player", host._id, { httpOnly: true })
-          .cookie("room", room._id, { httpOnly: true })
-          .json(room);
+        res.json({ room: room, playerId: host._id, roomId: room._id });
       })
       .catch(err => res.json(err));
   },

@@ -17,7 +17,9 @@ const Host = () => {
       .then(res => {
         console.log(res);
         context.fetchRooms();
-        navigate("/room/" + res.data._id);
+        localStorage.setItem("playerId", res.data.playerId);
+        localStorage.setItem("roomId", res.data.roomId);
+        navigate("/room/" + res.data.room._id);
       })
       .catch(res => console.log(res));
   };
