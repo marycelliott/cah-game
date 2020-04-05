@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import RoomsContext from "./../../context/rooms.context";
+import RoomsContext from "../../../context/rooms.context";
 
 import { Row } from "reactstrap";
 import { useEffect } from "react";

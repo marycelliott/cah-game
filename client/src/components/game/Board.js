@@ -1,33 +1,37 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import RoomsContext from "./../../context/rooms.context";
-import { useContext } from "react";
 import axios from "axios";
-import cookie from "react-cookies";
 import { Button } from "reactstrap";
 import Loading from "./../layout/Loading";
+import { useEffect } from "react";
+import CurrentRound from "./subcomponents/CurrentRound";
 
-const Board = props => {
+const Board = (props) => {
   // VARIABLES
-  const playerId = cookie.load("player");
   const context = useContext(RoomsContext);
   const { room, setRoom, fetchRooms } = context;
+  const [choice, setChoice] = useState();
+  const [czar, setCzar] = useState(0);
 
   // FUNCTIONS
   const startGame = () => {
-    axios.put("/api/rooms/:id/started").then(res => {
+    axios.put("/api/rooms/:id/started").then((res) => {
       console.log(res);
-      setRoom(res.data);
+      setRoom({
+        ...room,
+        hasStarted: true,
+        currentCzar: room.players[0],
+      });
       fetchRooms();
     });
   };
 
   if (!room.hasStarted) {
-    console.log(cookie.load("player"));
     return (
-      <div className="container text-center text-white">
-        <h1 className="h1">Waiting for Players</h1>
+      <div className="container text-white">
+        <h1 className="h1">Waiting for All Players...</h1>
         <>
-          {room.host == cookie.load("player") ? (
+          {room.host == localStorage.getItem("playerId") ? (
             <Button onClick={startGame} className="btn btn-primary">
               Start Game
             </Button>
@@ -37,15 +41,8 @@ const Board = props => {
     );
   } else {
     return (
-      <div className="container text-center text-white">
-        {!room.currentCzar ? (
-          <Loading />
-        ) : (
-          <>
-            <h1 className="h1">Card Czar</h1>
-            <h6 className="h6">{}</h6>
-          </>
-        )}
+      <div className="container text-white">
+        {!room.currentCzar ? <Loading /> : <CurrentRound czar={czar} />}
       </div>
     );
   }

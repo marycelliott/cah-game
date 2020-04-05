@@ -8,7 +8,7 @@ const Loading = () => {
         <Spinner color="light" />
       </div>
       <div style={{ display: "inline-block" }}>
-        <h1 className="h1">
+        <h1 className="h1 ml-3">
           <b>LOADING...</b>
         </h1>
       </div>

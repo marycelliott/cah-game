@@ -11,11 +11,12 @@ const RoomSchema = new mongoose.Schema(
     deck: DeckSchema,
     currentRound: {
       blackCard: { type: String },
-      choices: { type: Array }
+      choices: { type: Array },
     },
     currentCzar: PlayerSchema,
+    currentRound: { type: Number, default: 1 },
     rounds: { type: Number, default: 5 },
-    hasStarted: { type: Boolean, default: false }
+    hasStarted: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
