@@ -243,6 +243,7 @@ $orange-navbar:             rgba(#FF9500, .98);
 $red-navbar:                rgba(#FF4C40, .98);
 
 $bg-nude:               #FFFCF5 !default;
+$bg-default:            lighten($default, 7%) !default;
 $bg-primary:            lighten($primary-color, 7%) !default;
 $bg-info:               lighten($info-color, 7%) !default;
 $bg-success:            lighten($success-color, 7%) !default;

@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import RoomsContext from "./../../context/rooms.context";
 import axios from "axios";
-import { Button } from "reactstrap";
+import { Container, Button } from "reactstrap";
 import Loading from "./../layout/Loading";
 import { useEffect } from "react";
-import CurrentRound from "./subcomponents/CurrentRound";
+import CurrentRound from "./board-subcomponents/CurrentRound";
 
 const Board = (props) => {
   // VARIABLES
@@ -28,7 +28,7 @@ const Board = (props) => {
 
   if (!room.hasStarted) {
     return (
-      <div className="container text-white">
+      <Container className="text-white">
         <h1 className="h1">Waiting for All Players...</h1>
         <>
           {room.host == localStorage.getItem("playerId") ? (
@@ -37,13 +37,13 @@ const Board = (props) => {
             </Button>
           ) : null}
         </>
-      </div>
+      </Container>
     );
   } else {
     return (
-      <div className="container text-white">
+      <Container className="text-white">
         {!room.currentCzar ? <Loading /> : <CurrentRound czar={czar} />}
-      </div>
+      </Container>
     );
   }
 };

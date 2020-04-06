@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
-import RoomsContext from "./../../../context/rooms.context";
+import RoomsContext from "../../../context/rooms.context";
 import axios from "axios";
-import { Button } from "reactstrap";
+import { Container, Button } from "reactstrap";
 
 const CurrentRound = ({ czar }) => {
   const context = useContext(RoomsContext);

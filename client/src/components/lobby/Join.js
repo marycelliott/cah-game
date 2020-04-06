@@ -15,8 +15,8 @@ const Join = () => {
     fetchRooms();
   }, []);
 
-  const joinGame = id => {
-    Axios.post("/api/players", { name, id }).then(res => {
+  const joinGame = (id) => {
+    Axios.post("/api/players", { name, id }).then((res) => {
       localStorage.setItem("playerId", res.data.playerId);
       localStorage.setItem("roomId", res.data.roomId);
       navigate("/room/" + id);
@@ -24,16 +24,16 @@ const Join = () => {
   };
 
   return (
-    <Card className="card-custom ml-auto mr-auto" data-color="purple">
-      <h2 className="h2 title mx-auto text-center">Join a Game</h2>
+    <Card className="card-custom ml-auto mr-auto" color="danger">
+      <h2 className="h2 title mx-auto text-center text-white">Join a Game</h2>
       <Form className="register-form">
         <label>Your Name</label>
-        <Input type="text" onChange={e => setName(e.target.value)} />
+        <Input type="text" onChange={(e) => setName(e.target.value)} />
         <div
           class="list-group"
           style={{ overflow: "auto", maxHeight: "320px" }}
         >
-          {rooms.map(room => (
+          {rooms.map((room) => (
             <li
               style={{ cursor: "pointer" }}
               onClick={() => joinGame(room._id)}
@@ -48,7 +48,7 @@ const Join = () => {
             </li>
           ))}
         </div>
-        <Button className="btn-block btn-round mb-4" color="default">
+        <Button className="btn-block btn-round mb-4" color="secondary">
           Select
         </Button>
       </Form>
