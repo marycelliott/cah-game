@@ -3,12 +3,12 @@ import RoomsContext from "../../../context/rooms.context";
 import axios from "axios";
 import { Container, Button } from "reactstrap";
 
-const CurrentRound = ({ czar }) => {
+const CurrentRound = ({ czar, setCzar, choice, setChoice }) => {
   const context = useContext(RoomsContext);
   const { room, setRoom } = context;
 
   useEffect(() => {
-    if (czar == room.players.length - 1) {
+    if (czar == room.players.length - 1 || room.currentRound.num == 1) {
       setRoom({
         ...room,
         currentCzar: room.players[0],

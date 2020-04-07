@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
 import RoomsContext from "./../../context/rooms.context";
 import axios from "axios";
-import { Container, Button } from "reactstrap";
 import Loading from "./../layout/Loading";
-import { useEffect } from "react";
 import CurrentRound from "./board-subcomponents/CurrentRound";
+import HasStarted from "./board-subcomponents/HasStarted";
 
 const Board = (props) => {
   // VARIABLES
@@ -21,30 +20,23 @@ const Board = (props) => {
         ...room,
         hasStarted: true,
         currentCzar: room.players[0],
+        currentRound: 1,
       });
       fetchRooms();
     });
   };
 
   if (!room.hasStarted) {
-    return (
-      <Container className="text-white">
-        <h1 className="h1">Waiting for All Players...</h1>
-        <>
-          {room.host == localStorage.getItem("playerId") ? (
-            <Button onClick={startGame} className="btn btn-primary">
-              Start Game
-            </Button>
-          ) : null}
-        </>
-      </Container>
-    );
+    <HasStarted hostId={room.host} startGame={startGame} />;
+  } else if (room.currentCzar) {
+    <CurrentRound
+      czar={czar}
+      setCzar={setCzar}
+      choise={choice}
+      setChoice={setChoice}
+    />;
   } else {
-    return (
-      <Container className="text-white">
-        {!room.currentCzar ? <Loading /> : <CurrentRound czar={czar} />}
-      </Container>
-    );
+    <Loading />;
   }
 };
 
