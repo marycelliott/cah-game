@@ -11,7 +11,7 @@ const RoomSchema = new mongoose.Schema(
     deck: DeckSchema,
     currentRound: {
       num: { type: Number, default: 1 },
-      blackCard: { type: String },
+      blackCard: { type: Array },
       choices: { type: Array },
     },
     currentCzar: PlayerSchema,
