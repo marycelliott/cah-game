@@ -20,7 +20,10 @@ const Board = (props) => {
         ...room,
         hasStarted: true,
         currentCzar: room.players[0],
-        currentRound: 1,
+        currentRound: {
+          ...room.currentRound,
+          num: 1,
+        },
       });
       fetchRooms();
     });
