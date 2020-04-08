@@ -5,7 +5,7 @@ import { Container, Button } from "reactstrap";
 
 const CurrentRound = ({ czar, setCzar, choice, setChoice }) => {
   const context = useContext(RoomsContext);
-  const { room, setRoom } = context;
+  const { room, setRoom, grabBlack, dealWhite } = context;
 
   useEffect(() => {
     if (czar == room.players.length - 1 || room.currentRound.num == 1) {
@@ -17,6 +17,8 @@ const CurrentRound = ({ czar, setCzar, choice, setChoice }) => {
       ...room,
       currentCzar: room.players[czar],
     });
+    grabBlack(room);
+    dealWhite(room);
     axios
       .put("/api/rooms/:id/currentCzar", room.players[czar])
       .then((res) => console.log("current Czar set"));
