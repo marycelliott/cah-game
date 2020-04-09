@@ -4,7 +4,7 @@ import { Card } from "reactstrap";
 const BCard = () => {
   return (
     <Card color="default">
-      <h2 className="h2"></h2>
+      <h2 className="h2">Test</h2>
     </Card>
   );
 };

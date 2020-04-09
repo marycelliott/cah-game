@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Game = (props) => {
   const context = useContext(RoomsContext);
-  const { room, setRoom } = context;
+  const { setRoom } = context;
 
   useEffect(() => {
     axios.get("/api/rooms/" + props.name).then((res) => {

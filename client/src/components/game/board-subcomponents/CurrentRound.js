@@ -1,14 +1,15 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import RoomsContext from "../../../context/rooms.context";
 import axios from "axios";
 import { Container, Button } from "reactstrap";
+import BCard from "./BCard";
 
 const CurrentRound = ({ czar, setCzar, choice, setChoice }) => {
   const context = useContext(RoomsContext);
   const { room, setRoom, grabBlack, dealWhite } = context;
 
   useEffect(() => {
-    if (czar == room.players.length - 1 || room.currentRound.num == 1) {
+    if (czar === room.players.length - 1 || room.currentRound.num === 1) {
       setCzar(0);
     } else {
       setCzar(czar + 1);

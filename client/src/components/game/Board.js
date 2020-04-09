@@ -5,7 +5,7 @@ import Loading from "./../layout/Loading";
 import CurrentRound from "./board-subcomponents/CurrentRound";
 import HasStarted from "./board-subcomponents/HasStarted";
 
-const Board = (props) => {
+const Board = () => {
   // VARIABLES
   const context = useContext(RoomsContext);
   const { room, setRoom, fetchRooms } = context;
@@ -30,16 +30,18 @@ const Board = (props) => {
   };
 
   if (!room.hasStarted) {
-    <HasStarted hostId={room.host} startGame={startGame} />;
+    return <HasStarted hostId={room.host} startGame={startGame} />;
   } else if (room.currentCzar) {
-    <CurrentRound
-      czar={czar}
-      setCzar={setCzar}
-      choise={choice}
-      setChoice={setChoice}
-    />;
+    return (
+      <CurrentRound
+        czar={czar}
+        setCzar={setCzar}
+        choise={choice}
+        setChoice={setChoice}
+      />
+    );
   } else {
-    <Loading />;
+    return <Loading />;
   }
 };
 

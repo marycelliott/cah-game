@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import RoomsContext from "./../../context/rooms.context";
+import React, { useState } from "react";
+
 import { Popover, NavItem, PopoverBody } from "reactstrap";
 
-const Player = props => {
+const Player = (props) => {
   const { player, currentRound, i } = props;
   const [popoverOpen, setPopoverOpen] = useState(false);
 

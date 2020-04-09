@@ -35,12 +35,12 @@ function App() {
     let count = 0;
     let whiteCards = room.deck.whiteCards.slice();
     let players = room.players.slice();
-    players.map((player) => {
+    for (let player in players) {
       while (player.hand.length < 10) {
         player.hand.push(whiteCards.pop());
         count++;
       }
-    });
+    }
     whiteCards.length -= count;
     setRoom({
       ...room,

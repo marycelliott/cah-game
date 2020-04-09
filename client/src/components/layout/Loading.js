@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Spinner } from "reactstrap";
+import { Spinner } from "reactstrap";
 
 const Loading = () => {
   return (
